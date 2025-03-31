@@ -1,7 +1,6 @@
 import { petModel } from "./petModel.js";
 
 class PetDao {
-
   async create(data) {
     return await petModel.create(data);
   }
@@ -22,7 +21,7 @@ class PetDao {
     return await petModel.findByIdAndDelete(id);
   }
 
-  async removeAll(){
+  async removeAll() {
     return await petModel.deleteMany();
   }
 }

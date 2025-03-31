@@ -1,7 +1,6 @@
 import { userModel } from "./userModel.js";
 
 class UserDao {
-
   async create(data) {
     return await userModel.create(data);
   }
