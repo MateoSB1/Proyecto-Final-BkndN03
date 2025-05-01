@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Esquema de validación para el login
 export const loginSchema = {
   body: z.object(
     {
@@ -9,7 +8,6 @@ export const loginSchema = {
     }
   )
 }
-
 
 export const registerSchema = {
   body: z.object({

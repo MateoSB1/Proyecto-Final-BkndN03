@@ -3,13 +3,12 @@ import { generateUsersMocks } from "../../mock/userMock.js";
 import { userService } from "./userService.js";
 
 class UserController {
-  async getAll(req = request, res = response) {
+  async getAll(req = request, res = response, next) {
     try {
       const users = await userService.getAll();
       res.status(200).json(users);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Internal Server Error" });
+      next(error);
     }
   }
 
@@ -17,27 +16,24 @@ class UserController {
     try {
       const { amount } = req.params;
       const users = await userService.createUsersMocks(amount);
+
       res.status(201).json(users);
     } catch (error) {
-      console.error(error);
+      console.log(error);
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
 
-  async updateUser(req = request, res = response) {
+  async updateUser(req = request, res = response, next) {
     try {
       const { id } = req.params;
-      const updatedData = req.body;
-      const updatedUser = await userService.update(id, updatedData);
-      if (!updatedUser) {
-        return res.status(404).json({ message: "Usuario no encontrado" });
-      }
-      res.status(200).json(updatedUser);
+      const data = req.body;
+      const updatedUser = await userService.updateUser(id, data);
+      res.json(updatedUser);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Error al actualizar el usuario" });
+      next(error);
     }
-  }
+  };
 
   async deleteUser(req = request, res = response) {
     try {

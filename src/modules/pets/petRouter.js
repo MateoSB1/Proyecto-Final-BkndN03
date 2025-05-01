@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { petController } from "./petController.js";
 import { validateSchema } from "../../common/middlewares/validateSchema.js";
-import { petsMocksSchema } from "./petSchemas.js";
+import { createPetSchema, petsMocksSchema, updatePetSchema } from "./petSchemas.js";
+import { objectIdSchema } from "../../common/schemas/objectIdSchema.js";
 
 const router = Router();
 
 router.get("/mocks/:amount", validateSchema(petsMocksSchema), petController.createPetsMocks);
-router.post("/", petController.create);
-router.get("/:id", petController.getPetById);
-router.put("/:id", petController.updatePet);
-router.delete("/:id", petController.deletePet);
-
+router.post("/", validateSchema(createPetSchema), petController.create);
+router.get("/:id", validateSchema(objectIdSchema), petController.getPetById);
+router.put("/:id", validateSchema(updatePetSchema), petController.updatePet);
+router.delete("/:id",validateSchema(objectIdSchema), petController.deletePet);
 export default router;
