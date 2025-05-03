@@ -1,6 +1,7 @@
 export const createUserPath = {
-  summary: "Create a new user",
-  description: "Creates a new user in the system. Validates that the email is not already in use.",
+  summary: "Crear un nuevo usuario",
+  description:
+    "Crea un nuevo usuario en el sistema. Valida que el email no esté ya registrado.",
   tags: ["Users"],
   requestBody: {
     required: true,
@@ -14,7 +15,7 @@ export const createUserPath = {
   },
   responses: {
     201: {
-      description: "Nuevo usuario",
+      description: "Nuevo usuario creado",
       content: {
         "application/json": {
           schema: {
@@ -23,11 +24,17 @@ export const createUserPath = {
         },
       },
     },
+    400: {
+      description: "Datos inválidos o email ya existente",
+      content: {
+        "application/json": {},
+      },
+    },
     500: {
-      description: "Internal Server Error",
+      description: "Error interno del servidor",
       content: {
         "application/json": {},
       },
     },
   },
-}
+};

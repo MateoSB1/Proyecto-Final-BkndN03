@@ -2,7 +2,7 @@ paths:
   /api/adoptions:
     post:
       summary: Crear una nueva adopción
-      description: Create new Adoption
+      description: Crea una relación entre un usuario y una mascota
       tags:
         - Adoptions
       requestBody:
@@ -18,16 +18,19 @@ paths:
                 owner:
                   type: string
                   format: ObjectId
-                  description: ID del dueño
+                  description: ID del usuario que adopta
                 pet:
                   type: string
                   format: ObjectId
-                  description: ID de la mascota
+                  description: ID de la mascota adoptada
       responses:
-        200: 
-          description: Mascota adoptada
+        201:
+          description: Adopción creada exitosamente
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pet"
-               
+                $ref: "#/components/schemas/Adoption"
+        400:
+          description: Datos inválidos o faltantes
+        500:
+          description: Error interno del servidor

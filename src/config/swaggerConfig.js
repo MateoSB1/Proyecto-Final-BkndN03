@@ -3,6 +3,8 @@ import { userPaths } from "../docs/user/userPath.js";
 import { userDocSchema } from "../docs/user/userDocSchema.js";
 import { petPaths } from "../docs/pets/petsPath.js";
 import { petDocSchema } from "../docs/pets/petDocSchema.js";
+import { adoptionPaths } from "../docs/adoptions/adoptionPath.js";
+import { adoptionDocSchema } from "../docs/adoptions/adoptionDocSchema.js"; // 👈 Importamos
 
 export const swaggerOptions = {
   openapi: '3.0.0',
@@ -20,13 +22,13 @@ export const swaggerOptions = {
   paths: {
     ...userPaths,
     ...petPaths,
-    // Se puede agregar más paths de otros módulos
+    ...adoptionPaths,
   },
   components: {
     schemas: {
       User: userDocSchema,
-      Pet: petDocSchema
-      // Se puede agregar más schemas de otros módulos
-    }
-  }
+      Pet: petDocSchema,
+      Adoption: adoptionDocSchema,
+    },
+  },
 };

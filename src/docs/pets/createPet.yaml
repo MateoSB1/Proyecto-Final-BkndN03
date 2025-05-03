@@ -2,7 +2,7 @@ paths:
   /api/pets:
     post:
       summary: Crear una nueva mascota
-      description: Create new Pet
+      description: Crea una nueva mascota con datos proporcionados
       tags:
         - Pets
       requestBody:
@@ -21,25 +21,28 @@ paths:
                   description: Nombre de la mascota
                 specie:
                   type: string
-                  description: Especie de la mascota
+                  description: Especie (Perro, Gato, etc.)
                 adopted:
                   type: boolean
-                  description: Estado de adopción
+                  description: Si ya está adoptada
                 owner:
                   type: string
                   format: ObjectId
                   description: ID del dueño
                 image:
                   type: string
-                  description: Url de la imagen
+                  description: URL de imagen
                 birthDate:
                   type: string
                   description: Fecha de nacimiento
       responses:
-        201: 
+        "201":
           description: Mascota creada exitosamente
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Pet"
-               
+        "400":
+          description: Datos inválidos
+        "500":
+          description: Error interno

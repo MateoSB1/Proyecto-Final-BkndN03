@@ -1,13 +1,13 @@
 paths:
   /api/adoptions/{id}:
     get:
-      summary: Obtener un adoption por id
-      description: Get adoption by id
+      summary: Obtener una adopción por ID
+      description: Devuelve información detallada de una adopción específica
       tags:
         - Adoptions
       parameters:
-        - in: path
-          name: id
+        - name: id
+          in: path
           required: true
           schema:
             type: string
@@ -15,10 +15,12 @@ paths:
           description: ID de la adopción
       responses:
         200:
-          description: Retorno de adopción ok
+          description: Adopción obtenida exitosamente
           content:
             application/json:
               schema:
-                # $ref: "#/components/schemas/adoption"
+                $ref: "#/components/schemas/Adoption"
         404:
-          description: adopción no encontrada
+          description: Adopción no encontrada
+        500:
+          description: Error interno del servidor

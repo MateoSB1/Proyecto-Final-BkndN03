@@ -1,16 +1,15 @@
 import { generateSchemaProperties } from "../utils/generatePropertiesSchems.js";
 
-
-
 export const petDocSchema = {
   type: "object",
   properties: {
-    id: generateSchemaProperties("string", "", "67ca35d1e8b1391ada8c86ea"),
-    fist_name: generateSchemaProperties("string", "Nombre", "Raul"),
-    last_name: generateSchemaProperties("string", "Apellido", "Querol"),
-    email: generateSchemaProperties("string", "Email", "rq@example.com"),
-    password: generateSchemaProperties("string", "password", "123"),
-    role: generateSchemaProperties("string", "", "user"),
-    pets: generateSchemaProperties("array", "", "[]")
+    _id: generateSchemaProperties("string", "ID único", "67ca35d1e8b1391ada8c86ea"),
+    name: generateSchemaProperties("string", "Nombre", "Felix"),
+    specie: generateSchemaProperties("string", "Especie", "Gato"),
+    adopted: generateSchemaProperties("boolean", "Adoptado", false),
+    owner: generateSchemaProperties("ObjectID", "Dueño", "67ca35d1e8b1391ada8c86eb"),
+    image: generateSchemaProperties("string", "Imagen", "https://example.com/image.jpg"),
+    birthDate: generateSchemaProperties("string", "Fecha de nacimiento", "2020-10-12T00:00:00.000Z")
   },
+  required: ["_id", "name", "specie"]
 };
